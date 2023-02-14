@@ -1,0 +1,81 @@
+{
+  "name": "krownpay-backend-assessment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "format": "prettier --config .prettierrc \"./src/**/*.ts\" --write",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "generate:docs": "typedoc",
+    "dev": "nodemon",
+    "dev:watch": "concurrently npm:dev npm:test:watch",
+    "build": "tsc",
+    "build:dev": "npm run postbuild && rm -rf dist && tsc",
+    "postbuild": "npm run format && npm run lint",
+    "postinstall": "husky install",
+    "test": "mocha --exit -r ts-node/register 'tests/**/*.ts' --timeout 10000",
+    "test:coverage": "nyc --reporter=html --reporter=text mocha --exit -r ts-node/register 'tests/**/*.ts'",
+    "test:watch": "nodemon --exec npm test"
+  },
+  "lint-staged": {
+    "**/*.ts": [
+      "yarn lint",
+      "yarn format"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krownpay/krownpay-backend-assessment.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/krownpay/krownpay-backend-assessment/issues"
+  },
+  "homepage": "https://github.com/krownpay/krownpay-backend-assessment#readme",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "express-winston": "^4.2.0",
+    "mongoose": "^6.9.1",
+    "winston": "^3.8.2"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.2",
+    "@types/chai": "^4.3.4",
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
+    "@types/express-winston": "^4.0.0",
+    "@types/mocha": "^10.0.1",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^18.13.0",
+    "@types/winston": "^2.4.4",
+    "@typescript-eslint/eslint-plugin": "^5.13.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "chai": "^4.3.7",
+    "chai-http": "^4.3.0",
+    "concurrently": "^7.6.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.33.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-import-resolver-typescript": "^3.5.3",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.1",
+    "mocha": "^10.2.0",
+    "nodemon": "^2.0.20",
+    "nyc": "^15.1.0",
+    "prettier": "^2.8.4",
+    "ts-node": "^10.9.1",
+    "typedoc": "^0.23.24",
+    "typescript": "^4.9.5"
+  }
+}
